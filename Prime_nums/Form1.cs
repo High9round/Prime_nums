@@ -39,20 +39,21 @@ namespace Prime_nums
             {
                 list.Add(i);
             }
-            for (int factor = 2; factor <= max_num; factor++)
+            for (int factor = 2; factor * factor <= max_num; ++factor)
             {
                 list.RemoveAll(delegate (int x) { return x > factor && x % factor == 0; });
             }
 
-            string result = "";
+            StringBuilder result = new StringBuilder("");
             for (int i = 0; i < list.Count; i++)
             {
-                result += (list[i].ToString() + ", ");
+                result.Append(list[i].ToString() + ", ");
+                
             }
-            result = result.Remove(result.Length - 2);
+            result = result.Remove(result.Length - 2,2);
 
             this.Invoke(new Action(delegate () {
-                textBox_result.Text = result;    
+                textBox_result.Text = result.ToString();    
             }));
 
             
